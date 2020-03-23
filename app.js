@@ -21,9 +21,12 @@ app.get('/playstore-apps', (req, res) => {
     }
 
     if(sort){
-        apps.sort((a, b) => {
-            return a[sort] < b[sort] ? 1 : a[sort] > b[sort] ? -1 : 0;
-        })
+        // //A better way
+        apps.sort((a,b) => b[sort] - a[sort]);
+        console.log(apps.map(item => item.Rating));
+        // apps.sort((a, b) => {
+        //     return a[sort] < b[sort] ? 1 : a[sort] > b[sort] ? -1 : 0;
+        // })
     }
 
     if(genre){
@@ -43,6 +46,4 @@ app.get('/playstore-apps', (req, res) => {
 
 })
 
-app.listen(8000, () => {
-    console.log('Server commenced on PORT 8000!')
-})
+module.exports = app;
